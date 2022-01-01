@@ -195,7 +195,6 @@ const AuthController = {
         const updatedUser = await user.save();
 
         createAndSendToken(updatedUser, 200, res);
-
     }),
 
 }

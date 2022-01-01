@@ -7,6 +7,7 @@ const tourMiddleware = require('../app/middleware/tourMiddleware');
 const reviewRouter = require('../routes/review');
 
 // mounting router
+
 // Request will be go to reviewRouter's home end point
 router.use('/:tourId/reviews', reviewRouter);
 
@@ -31,7 +32,6 @@ router.route('/:id')
         authController.access('Admin', 'Lead-Guide'),
         tourController().deleteTour
     );
-s
 
 // Let's do with self :) => Hurray🥳, You did it !!
 router.route('/alias/top5tours').get(tourMiddleware.topFiveTour, tourController().getAllTour);

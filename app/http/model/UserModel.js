@@ -53,7 +53,7 @@ const UserSchema = new mongoose.Schema({
 
 });
 
-// Hash the password
+// Hash the password (Document M/W)
 UserSchema.pre('save', async function (next) {
     // only run this function if the password was actully modified
     if (!this.isModified('password')) return next();
@@ -64,13 +64,16 @@ UserSchema.pre('save', async function (next) {
     next();
 });
 
-// Run on change password or forget password
+
+// Document M/W is supported for the follwing methods => save, remove, validate, updateOne, deleteOne
+
+// Run on change password or forget password (Document M/W)
 UserSchema.pre('save', async function (next) {
     if (!this.isModified('password') || this.isNew) return next();
     this.passwordChangeAt = Date.now() - 2000;
 });
 
-// Get only active users
+// Get only active users (Query M/W)
 UserSchema.pre(/^find/, function (next) {
     this.find({ active: { $ne: false } });
     next();

@@ -83,6 +83,7 @@ const tourSchema = new mongoose.Schema({
             day: Number
         }
     ]
+        
 }, {
     toJSON: { virtuals: true },
     toObject: { virtuals: true }
@@ -106,12 +107,14 @@ tourSchema.virtual('reviews', {
 });
 
 
+// mongoose index concept for improve performance
+tourSchema.index({price:1, ratingsAverage: -1}); 
 
 //Mongoose Middleware
 
 // 1) Document Middleware
 
-// Populate the query
+// Populate the query with query M/W
 
 tourSchema.pre(/^find/, function (next) {
 
@@ -123,12 +126,9 @@ tourSchema.pre(/^find/, function (next) {
         }
     );
     next();
-});
 
-// tourSchema.post('save', function (doc, next) {
-//     // console.log(doc);
-//     next();
-// });
+});
+ 
 
 const Tour = mongoose.model('Tour', tourSchema);
 module.exports = Tour;

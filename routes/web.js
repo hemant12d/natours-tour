@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const Tour = require('../app/http/model/Tour');
 router.get('/home', async (req, res)=>{
 
     // Insert a tour

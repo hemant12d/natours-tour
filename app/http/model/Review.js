@@ -17,9 +17,9 @@ const reviewSchema = new mongoose.Schema({
     },
     rating: {
         type: Number,
-        required: [true, "Rating fields can't be empty"],
-        min: 1,
-        max: 5
+        required: [true, "Rating field can't be empty"],
+        min: 1, 
+        max: 5 
     },
     createdAt: {
         type: Date,
@@ -37,7 +37,7 @@ const reviewSchema = new mongoose.Schema({
 );
 
 
-// Populate the query
+// Populate the query with query M/W
 reviewSchema.pre(/^find/, function (next) {
     // this.populate(
     //     {

@@ -21,7 +21,7 @@ const TourController = () => {
         tourOverview: catchAsyncError(async (req, res) => {
 
             // aggregation pipeline
-            const pipeLine = [
+            const aggregatePipeLine = [
                 {
                     $match: { price: { $gte: 300 } }
                 },
@@ -38,11 +38,13 @@ const TourController = () => {
                     }
                 },
                 {
+                    // Accending order
                     $sort: { ratingsAvg: 1 }
                 }
-            ]; // pipeline also known as stages of array
+            ]; // aggregation pipeline also known as stages of array
 
-            const aggregateOverview = await Tour.aggregate(pipeLine);
+            const aggregateOverview = await Tour.aggregate(aggregatePipeLine);
+
             return res.status(200).json({
                 status: 'success',
                 data: {
@@ -77,7 +79,7 @@ const TourController = () => {
                     }
                 },
                 {
-                    // (newest first)
+                    // Decending order
                     $sort: { totalTour: -1 }
                 },
                 {

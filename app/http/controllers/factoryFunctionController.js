@@ -6,7 +6,7 @@
 
 // 4) Slv & smlfy
 
-// 4) Luk & reftor
+// 5sd) Luk & reftor
 
 const catchAsyncError = require('../../utils/CatchAsyncError');
 const AppError = require('../../utils/AppError');
@@ -83,7 +83,7 @@ const factoryFunctions = {
 
             const doc = await query;
 
-            if (!doc) return next(new AppError('Document not exist', 404));
+            if (!doc) return next(new AppError('Document not exists', 404));
 
             return res.status(200).json({
                 status: "success",
@@ -120,7 +120,20 @@ const factoryFunctions = {
 
         })
     }
-
 }
 
 module.exports = factoryFunctions;
+
+
+function a(value){
+    return function(value2){
+        return function(){
+            console.log(value, value2);
+        }
+    }
+}
+
+let b = a(5);
+let c = b(7);
+
+c();

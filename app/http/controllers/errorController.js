@@ -18,8 +18,8 @@ const productionError = (res, error) => {
         });
     }
     else {
-        // mongoose error also include in programming error so we have to handle them manually :) 
 
+        // Mongoose error also include in programming error so we have to handle them manually :) 
         console.log("Error 🐉🐉 ", error);
         return res.status(500).json({
             status: error.statusResult,
