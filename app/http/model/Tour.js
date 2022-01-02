@@ -90,6 +90,10 @@ const tourSchema = new mongoose.Schema({
 });
 
 
+// mongoose index concept for improve performance
+tourSchema.index({price:1, ratingsAverage: -1}); 
+
+
 // Virtual properties to create the virtual fields
 
 tourSchema.virtual('daysInWeek').get(function () {
@@ -107,8 +111,6 @@ tourSchema.virtual('reviews', {
 });
 
 
-// mongoose index concept for improve performance
-tourSchema.index({price:1, ratingsAverage: -1}); 
 
 //Mongoose Middleware
 

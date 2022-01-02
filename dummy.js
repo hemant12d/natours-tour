@@ -72,3 +72,31 @@
 // eventEmitter.on('connection', connectionFunc);
 
 // eventEmitter.emit('connection');
+
+
+// Class exercise
+// class Bird{
+   
+//     constructor(name){
+//         this.name = name;
+//         console.log("1");
+//     }
+// }
+
+// class peocock extends Bird{
+    
+//     constructor(name){
+         
+//         console.log("2");
+//         super(name)
+//     }
+
+    
+//     getName(){
+        
+//         console.log(this.name)
+//     }
+// }
+
+// const newPeocock = new peocock("Flying peocock");
+// newPeocock.getName();

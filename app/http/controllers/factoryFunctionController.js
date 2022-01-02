@@ -2,11 +2,11 @@
 
 // 2) Cncrt exmpl
 
-// 3) Brk  dn
+// 3) Brk dn
 
 // 4) Slv & smlfy
 
-// 5sd) Luk & reftor
+// 5) Luk & reftor
 
 const catchAsyncError = require('../../utils/CatchAsyncError');
 const AppError = require('../../utils/AppError');
@@ -125,15 +125,3 @@ const factoryFunctions = {
 module.exports = factoryFunctions;
 
 
-function a(value){
-    return function(value2){
-        return function(){
-            console.log(value, value2);
-        }
-    }
-}
-
-let b = a(5);
-let c = b(7);
-
-c();

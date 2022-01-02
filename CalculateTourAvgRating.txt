@@ -1,0 +1,5 @@
+i) Calculate the updated avarage rating when insert the review
+
+ii) Now insert the Avg rating to the following tour
+
+
