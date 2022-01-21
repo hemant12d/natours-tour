@@ -49,4 +49,8 @@ router.route('/aggregate/busymonth/:year')
     );
 
 
+// Geo Special Query Demo
+
+router.route('/tours-within/:distance/center/:lanlag/unit/:unit', tourController().tourWithIn)
+
 module.exports = router;

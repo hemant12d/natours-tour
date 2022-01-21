@@ -96,6 +96,10 @@ const TourController = () => {
                     tours: allTours,
                 }
             });
+        }),
+
+        tourWithIn: catchAsyncError(async (req, res, next) => {
+
         })
 
     }

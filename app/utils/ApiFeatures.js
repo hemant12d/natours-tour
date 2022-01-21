@@ -12,6 +12,7 @@ class ApiFeatures {
 
         // Popup the options sort, fields, limit, & page
         const popUp = ['sort', 'fields', 'limit', 'page'];
+        
         popUp.forEach(el => delete queryObj[el]);
 
         // We want input like this 

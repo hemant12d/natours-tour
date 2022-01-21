@@ -3,7 +3,7 @@ const tourSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, "A tour must have a name"],
-        unique: true,
+        unique: [true, "Tour with the follwing name is already exists"],
         trim: true
     },
     duration: {
@@ -60,7 +60,9 @@ const tourSchema = new mongoose.Schema({
         }
     ],
     startDates: [Date],
+
     startLocation: {
+        // GeoJSON Data (Describe place on earth using cordinates)
         type: {
             type: String,
             default: 'Point',
@@ -69,7 +71,7 @@ const tourSchema = new mongoose.Schema({
         coordinates: [Number],
         address: String,
         description: String
-    },
+        },
     locations: [
         {
             type: {
@@ -82,6 +84,7 @@ const tourSchema = new mongoose.Schema({
             description: String,
             day: Number
         }
+        
     ]
         
 }, {
@@ -93,9 +96,7 @@ const tourSchema = new mongoose.Schema({
 // mongoose index concept for improve performance
 tourSchema.index({price:1, ratingsAverage: -1}); 
 
-
 // Virtual properties to create the virtual fields
-
 tourSchema.virtual('daysInWeek').get(function () {
     return (this.duration / 7).toFixed(2);
 });
@@ -114,7 +115,7 @@ tourSchema.virtual('reviews', {
 
 //Mongoose Middleware
 
-// 1) Document Middleware
+
 
 // Populate the query with query M/W
 
@@ -134,3 +135,8 @@ tourSchema.pre(/^find/, function (next) {
 
 const Tour = mongoose.model('Tour', tourSchema);
 module.exports = Tour;
+
+
+
+// Is the Earth 2D or 3D?
+// Maps are 2-dimensional (2D) representations of a 3-dimensional (3D) Earth. In a small area, Earth is essentially flat, so a flat map is accurate. But to represent a larger portion of Earth, map makers must use some type of projection to collapse the third dimension onto a flat surface.

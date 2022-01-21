@@ -42,9 +42,7 @@ const productionValidationError = (res, error) => {
 
 const productionDuplicateError = (res, error) => {
     const msg = `Duplicate entry for ${error.keyValue.name}`;
-    const abc = new AppError(msg, 400);
-    console.log("Abc", abc);
-    return abc;
+    return new AppError(msg, 400);
 }
 
 // JWT authentication error 🦓🦓
@@ -63,9 +61,9 @@ module.exports = (error, req, res, next) => {
     error.statusCode = error.statusCode || 500;
     error.statusResult = error.statusResult || 'error';
 
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === 'development')
         developmentError(res, error);
-    }
+    
     else if (process.env.NODE_ENV === 'production') {
 
         if (error.name === 'CastError')

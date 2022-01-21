@@ -1,4 +1,4 @@
-const User = require('../model/UserModel');
+const User = require('../model/User');
 
 const factory = require('./factoryFunctionController');
 
