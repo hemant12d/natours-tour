@@ -95,7 +95,7 @@ UserSchema.methods.checkPasswordChange = function (tokenCreatedTime) {
     return (password_Change_Time_Seconds > tokenCreatedTime);
 }
 
-// Reset & Incrypted Token for Forget-Password functionality
+// Reset & incrypted token for forget-password functionality
 UserSchema.methods.reset_TokenGenerate = function () {
     const resetToken = crypto.randomBytes(32).toString('hex');
     // Output be Like => ec065ab4a37b300ad9c03141bb10ed497f09cd225d9064cd7d80cc05b40ef23d

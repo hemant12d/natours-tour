@@ -2,6 +2,8 @@ const Tour = require('../model/Tour');
 const AppError = require('../../utils/AppError');
 const catchAsyncError = require('../../utils/CatchAsyncError');
 const factory = require('./factoryFunctionController');
+const httpStatusCodes = require('../../responses/httpStatusCodes');
+const apiResult = require('../../responses/apiResult');
 
 
 const TourController = () => {
@@ -23,7 +25,9 @@ const TourController = () => {
             // aggregation pipeline
             const aggregatePipeLine = [
                 {
-                    $match: { price: { $gte: 300 } }
+                    $match: { 
+                        price: { $gte: 300 } 
+                    }
                 },
                 {
                     $group: {
@@ -39,7 +43,9 @@ const TourController = () => {
                 },
                 {
                     // Accending order
-                    $sort: { ratingsAvg: 1 }
+                    $sort: { 
+                        ratingsAvg: 1
+                    }
                 }
             ]; // aggregation pipeline also known as stages of array
 
@@ -63,7 +69,10 @@ const TourController = () => {
                 },
                 {
                     $match: {
-                        startDates: { $gte: new Date(`${clientYear}-01-01`), $lte: new Date(`${clientYear}-12-31`) }
+                        startDates: {
+                            $gte: new Date(`${clientYear}-01-01`),
+                            $lte: new Date(`${clientYear}-12-31`)
+                        }
                     }
                 },
                 {
@@ -80,7 +89,9 @@ const TourController = () => {
                 },
                 {
                     // Decending order
-                    $sort: { totalTour: -1 }
+                    $sort: {
+                         totalTour: -1 
+                    }
                 },
                 {
                     $limit: 6,
@@ -98,7 +109,87 @@ const TourController = () => {
             });
         }),
 
-        tourWithIn: catchAsyncError(async (req, res, next) => {
+
+        // /tours-within/:distance/center/:latlng/unit/:unit
+        // /tours-within/233/center/34.111745,-118.113491/unit/mi
+        toursWithIn: catchAsyncError(async (req, res, next) => {
+            const { distance, latlng, unit } = req.params;
+            const [lat, lng] = latlng.split(',');
+
+
+            // radius measured in radians, query operators accept distance in radians
+            const radius = unit === 'mi' ? distance / 3963.2 : distance / 6378.1;
+          
+            if (!lat || !lng) {
+              return next(
+                new AppError(
+                  'Please provide latitutr and longitude in the format lat,lng.',
+                  400
+                )
+              );
+            }
+          
+          
+            // For spherical query operators to function properly, you must convert distances to radians
+            // If you use longitude and latitude, specify coordinates in order of longitude, latitude in query
+            const tours = await Tour.find({
+                startLocation: {
+                  $geoWithin: { $centerSphere: [[lng, lat], radius] }
+                }
+            });
+          
+            return res.status(httpStatusCodes.ACCEPTED).json({
+              status: apiResult.SUCCESS,
+              results: tours.length,
+              data: {
+                data: tours
+              }
+            });
+          
+        }),
+
+        tourNearMe: catchAsyncError(async (req, res, next) =>{
+
+            const {latlng, unit}  = req.params;
+            const [lat, lng] = latlng.split(",");
+            let multiplier = unit === 'mi' ? 0.000621371 : 0.001;
+
+            if (!lat || !lng) {
+                return next(
+                  new AppError(
+                    'Please provide latitutr and longitude in the format lat,lng.',
+                    400
+                  )
+                );
+            }
+           
+
+            const distances = await Tour.aggregate([
+                {
+                    $geoNear:{
+                        near:{
+                            type: 'Point',
+                            coordinates: [lng * 1, lat * 1]
+                        },
+                        // default distanceField is comes in meter
+                        distanceField: 'distance',
+                        distanceMultiplier: multiplier
+                    }
+                },
+                {
+                    $project: {
+                      distance: 1,
+                      name: 1
+                    }
+                }
+            ])
+            
+            return res.status(httpStatusCodes.ACCEPTED).json({
+                status: apiResult.SUCCESS,
+                data: {
+                  data: distances
+                }
+            });
 
         })
 

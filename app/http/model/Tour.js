@@ -95,6 +95,7 @@ const tourSchema = new mongoose.Schema({
 
 // mongoose index concept for improve performance
 tourSchema.index({price:1, ratingsAverage: -1}); 
+tourSchema.index({startLocation:'2dsphere'}); 
 
 // Virtual properties to create the virtual fields
 tourSchema.virtual('daysInWeek').get(function () {
@@ -103,7 +104,6 @@ tourSchema.virtual('daysInWeek').get(function () {
 
 
 // Virtual Populate for parent referencing
-
 tourSchema.virtual('reviews', {
     ref: 'Review',
     foreignField: 'tour',

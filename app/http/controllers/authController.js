@@ -176,7 +176,7 @@ const AuthController = {
     }),
 
     resetPassword: CatchAsyncError(async (req, res, next) => {
-        const passwordResetToken = crypto.createHash('sha256').update(req.params.token).digest('hex');;
+        const passwordResetToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
 
         // Check if token exists & valid
         const user = await User.findOne({

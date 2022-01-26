@@ -49,8 +49,14 @@ router.route('/aggregate/busymonth/:year')
     );
 
 
-// Geo Special Query Demo
+// Geo Special Queries
+// /tours-within/233/center/34.111745,-118.113491/unit/mi
 
-router.route('/tours-within/:distance/center/:lanlag/unit/:unit', tourController().tourWithIn)
+
+// Tour within distance
+router.route('/tours-within/:distance/center/:latlng/unit/:unit').get(tourController().toursWithIn);
+
+
+router.route('/tours-nearMe/:latlng/unit/:unit').get(tourController().tourNearMe);
 
 module.exports = router;

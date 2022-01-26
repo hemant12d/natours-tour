@@ -65,12 +65,19 @@ reviewSchema.pre(/^find/, function (next) {
 });
 
 
+/**
+ * 
+ * @param {MongoDB Id} tourId 
+ */
+
 // In static method this refers to the current model
 reviewSchema.statics.calAverageRating = async function (tourId) {
    
     const aggregatePipeLine = [
         {
-            $match: { tour: tourId }
+            $match: { 
+                tour: tourId
+            }
         },
         {
             $group: {
