@@ -11,6 +11,7 @@ const developmentError = (res, error) => {
 }
 
 const productionError = (res, error) => {
+
     if (error.IsOperational) {
         return res.status(error.statusCode).json({
             status: error.statusResult,
@@ -20,7 +21,7 @@ const productionError = (res, error) => {
     else {
 
         // Mongoose error also include in programming error so we have to handle them manually :) 
-        console.log("Error 🐉🐉 ", error);
+        console.log("Error 🦀🦀", error);
         return res.status(500).json({
             status: error.statusResult,
             msg: "Something went very very wrong !",
@@ -41,7 +42,8 @@ const productionValidationError = (res, error) => {
 }
 
 const productionDuplicateError = (res, error) => {
-    const msg = `Duplicate entry for ${error.keyValue.name}`;
+    console.log("Error ", error)
+    const msg = `Duplicate entry for ${error.keyValue.email}`;
     return new AppError(msg, 400);
 }
 

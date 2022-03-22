@@ -1,0 +1,29 @@
+[33mcommit 58168ec773374df9dfa7ae2c835ea6b6bc27fb55[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Hemant Soni <hsoni2962@gmail.com>
+Date:   Thu Jan 27 00:09:17 2022 +0530
+
+    (i) Geo Special Queries to find tour in certain distance (ii) Geo Special Queries to find the tours near me
+
+[33mcommit 8e8c77855ea63ec96fa3be95988f855cf83494c2[m
+Author: Hemant Soni <hsoni2962@gmail.com>
+Date:   Fri Jan 21 14:17:24 2022 +0530
+
+    Backup end point
+
+[33mcommit c4f47483cc247882f4ddb994ce17eddf64457412[m
+Author: Hemant Soni <hsoni2962@gmail.com>
+Date:   Sun Jan 2 17:50:12 2022 +0530
+
+    (i) Setup the rating calculation functionality for tour when someone add, update & delete review (ii) Set unique combo of tour & user in revi
+
+[33mcommit eebcd04126159d211c3ef74351e35d6e1f88db91[m
+Author: Hemant Soni <hsoni2962@gmail.com>
+Date:   Sat Jan 1 11:13:31 2022 +0530
+
+    Backup end point
+
+[33mcommit b6db6ac67d493dfad5af1d76f899f2799dba9560[m
+Author: Hemant Soni <hsoni2962@gmail.com>
+Date:   Mon Dec 27 16:40:59 2021 +0530
+
+    Setup the natours app to git (version control system)

@@ -4,7 +4,7 @@ const userController = require('../app/http/controllers/userController');
 
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
-router.post('/forgetMyPassword', authController.forgetPassword);
+router.post('/forget-password', authController.forgetPassword);
 router.patch('/resetMyPassword/:token', authController.resetPassword);
 
 // Added protect route to all the remaining routes
@@ -21,7 +21,6 @@ router.delete('/deleteMe', authController.deleteMe);
 
 
 // Added access middleware with admin access to all of the remaining routes
-
 router.use(authController.access('Admin'));
 router.route('/')
     .get(userController.getAllUser);

@@ -61,7 +61,7 @@ UserSchema.pre('save', async function (next) {
 
     // delete the confirm_password field
     this.confirm_password = undefined;
-    next();
+    return next();
 });
 
 
@@ -70,12 +70,13 @@ UserSchema.pre('save', async function (next) {
 // Run on change password or forget password (Document M/W)
 UserSchema.pre('save', async function (next) {
     if (!this.isModified('password') || this.isNew) return next();
+    // passwordChangeAt property should be add before token generate
     this.passwordChangeAt = Date.now() - 2000;
 });
 
 // Get only active users (Query M/W)
 UserSchema.pre(/^find/, function (next) {
-    this.find({ active: { $ne: false } });
+    this.find({ isActive: { $ne: false } });
     next();
 });
 
@@ -87,8 +88,7 @@ UserSchema.methods.matchPassword = async function (password, hashPassword) {
 // CheckPassword change (check if jwtToken is created after checkPasswordChange or not)
 UserSchema.methods.checkPasswordChange = function (tokenCreatedTime) {
     // If Password is not changed
-    if (!this.passwordChangeAt)
-        return false;
+    if (!this.passwordChangeAt) return false;
 
     // Check if token is expired or not
     password_Change_Time_Seconds = parseInt(this.passwordChangeAt.getTime() / 1000);

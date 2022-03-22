@@ -1,16 +1,16 @@
 1) Set httpOnly to secureOption
 
-2) enable process exception error & reference error 
+2) enable process exception error & reference error (done)
 
-3) Set limit to all the routes 
+3) Set limit to all the routes (done)
 
-4) Fix the roles in the CreateUser function
+4) Fix the roles in the CreateUser function  
 
-5) Authenticate the deleteuser functionlity
+5) Authenticate the deleteuser functionlity ( Done )
 
 6) Authorized the review update functionality
 
-7) Update & make reliable userUpdate Functionlity in the user controllers
+7) Update & make reliable userUpdate Functionlity in the user controllers ( Done )
 
 8) Implement catching error functionality to the Review model's static function
 

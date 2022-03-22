@@ -1,5 +1,5 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 const tourController = require('../app/http/controllers/tourController');
 const authController = require('../app/http/controllers/authController');
 const reviewController = require('../app/http/controllers/reviewController');
@@ -8,7 +8,7 @@ const reviewRouter = require('../routes/review');
 
 // mounting router
 
-// Request will be go to reviewRouter's home end point
+// Request will be go to reviewRouter's home end point ( Redirect )
 router.use('/:tourId/reviews', reviewRouter);
 
 // A new unique way of single route for update, find & delete a single document
@@ -35,6 +35,7 @@ router.route('/:id')
 
 // Let's do with self :) => Hurray🥳, You did it !!
 router.route('/alias/top5tours').get(tourMiddleware.topFiveTour, tourController().getAllTour);
+
 router.route('/alias/top5cheap').get(tourMiddleware.topFiveCheap, tourController().getAllTour);
 
 

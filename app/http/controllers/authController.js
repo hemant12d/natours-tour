@@ -38,6 +38,9 @@ const AuthController = {
             role: req.body.role
         });
 
+        // Send Welcome Email
+        new SendEmail(newUser, 'http://127.0.0.1/user/me').welcome('Signup to natours app', 'Welcome to the natours family');
+
         createAndSendToken(newUser, 201, res);
     }),
 
@@ -111,20 +114,23 @@ const AuthController = {
         // Varification of Token
         const decodeToken = await promisify(jwt.verify)(jwtToken, process.env.APP_SECRET_KEY);
 
-        // Check if user still exists (Many of the developer don't know about this but it's imp😎😎)
+        // Check if user still exists (Many of the developer ignore this but it's imp 😎)
         const freshUser = await User.findById(decodeToken.id);
         if (!freshUser) return next(new AppError("User belonging to this token, no longar exists", 401));
 
         // Check if user changed the password, then we have to logout him from all the deviecs
-        // This is also very important as a security measures
-        
+
+        // When user change password but old device has valid token
         if (freshUser.checkPasswordChange(decodeToken.iat)) {
-            return next(new AppError("User recentely changed the password, please login to continue", 401));
+            return next(new AppError(
+                "User recentely changed the password, please login to continue",
+                401
+            ));
         }
 
         // ACCESS GRANTED
         req.user = freshUser;
-        next();
+        return next();
     }),
 
     // This function can't have any promise & don't have any attachment to catch, That's why he is not in CatchAsyncError function
@@ -132,15 +138,15 @@ const AuthController = {
         return (req, res, next) => {
             if (!roles.includes(req.user.role))
                 return next(new AppError("You don't have access for this", 403));
-            next();
+                
+            return next();
         }
     },
 
     forgetPassword: CatchAsyncError(async (req, res, next) => {
+        const user = await User.findOne({ email: req.body.email });
+        if (!user) return next(new AppError("User not exists with this email", 404));
         try {
-            const user = await User.findOne({ email: req.body.email });
-            if (!user) return next(new AppError("User not exists with this email", 404));
-
             // Create reset token for user (Fatty Model, thin Controller)
             const resetToken = user.reset_TokenGenerate();
 
@@ -165,6 +171,7 @@ const AuthController = {
 
         }
         catch (err) {
+            console.log(err)
             user.passwordResetExpires = undefined;
             user.passwordResetToken = undefined;
             await user.save({ validateBeforeSave: false });
@@ -172,6 +179,7 @@ const AuthController = {
                 status: 'error',
                 error: err
             })
+
         }
     }),
 

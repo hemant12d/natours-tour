@@ -61,7 +61,7 @@ reviewSchema.pre(/^find/, function (next) {
             select: "name, photo"
         });
 
-    next();
+    return next();
 });
 
 
@@ -95,6 +95,7 @@ reviewSchema.statics.calAverageRating = async function (tourId) {
             await Tour.findByIdAndUpdate(tourId, { ratingsAverage: avgRating, ratingsQuantity: ntour });
         }
         else{
+            // Default rating
             await Tour.findByIdAndUpdate(tourId, { ratingsAverage: 4.5, ratingsQuantity: 0 });
         }
     }
@@ -120,10 +121,8 @@ reviewSchema.pre(/^findOneAnd/, async function (next) {
 
 
 reviewSchema.post(/^findOneAnd/, async function () {
-
     // if review not exists then not calculate the average rating for tour
     if (this.review) await this.review.constructor.calAverageRating(this.review.tour);
-
 })
 
 

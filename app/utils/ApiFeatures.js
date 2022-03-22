@@ -20,6 +20,7 @@ class ApiFeatures {
         // from this
         // { price: { lte: '400' }, ratingsAverage: { gte: '4.5' } }
 
+         
         // Advance filtering, Ek Zalak 😎😎
         let queryStr = JSON.stringify(queryObj);
         queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`);
@@ -37,10 +38,10 @@ class ApiFeatures {
         if (this.clientOptions.sort) {
 
             // Make the parameter valid for query
-            let sortBy = this.clientOptions.sort.split(',').join(' ');
+            let sortByFields = this.clientOptions.sort.split(',').join(' ');
 
-            // If there is no match for sortBy or sortBy is empty, then default accending order will be apply
-            this.chainQuery = this.chainQuery.sort(sortBy);
+            // If there is no match for sortByFields or sortByFields is empty, then default accending order will be apply
+            this.chainQuery = this.chainQuery.sort(sortByFields);
         } else {
             // Default Sort (Newest Fast)
             this.chainQuery = this.chainQuery.sort('-createdAt');

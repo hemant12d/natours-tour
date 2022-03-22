@@ -8,7 +8,7 @@ const UserController = {
         next();
     },
 
-    getAllUser: factory.getAll(User),
+    getAllUser: factory.getAll(User),     
 
     deleteUser: factory.deleteOne(User),
 

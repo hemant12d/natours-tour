@@ -10,13 +10,21 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+const path = require('path');
 
+// Security packages
 const helmet = require('helmet');
+const hpp = require('hpp');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
-const hpp = require('hpp');
+const compression = require('compression');
+
 const unHandleRoute = require("./app/utils/unHandleRoute");
 const limiter = require("./app/utils/limiterConfiguration");
+
+// Template engine configuration
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
 
 // Set security http headers
 app.use(helmet());
@@ -25,6 +33,7 @@ app.use(helmet());
 app.use(express.json({ limit: '10kb' }));
 
 app.use(hpp());
+
 app.use(express.urlencoded({ extended: false }));
 
 // Datasanitization against NoSql Query injection
@@ -35,6 +44,8 @@ app.use(xss());
 
 // Limiting the request from particular Ip
 app.use('/', limiter);
+
+app.use(compression());
 
 // Handle all the operation & programming error
 const global_Error_Handling_Middleware = require('./app/http/controllers/errorController');

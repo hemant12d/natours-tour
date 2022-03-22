@@ -113,10 +113,6 @@ tourSchema.virtual('reviews', {
 
 
 
-//Mongoose Middleware
-
-
-
 // Populate the query with query M/W
 
 tourSchema.pre(/^find/, function (next) {
