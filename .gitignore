@@ -4,3 +4,4 @@
 /.env
 /preview
 /albums-migrations
+/test.js

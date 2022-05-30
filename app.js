@@ -64,7 +64,7 @@ app.use('/reviews', reviewRoute);
 // Handle undefined route
 app.all('*', unHandleRoute);
 
-// Global Error handling middleware function(Out of the box!, thanks express :) ) 
+// Global Error handling middleware function(Out of the box!, thanks express :) 
 app.use(global_Error_Handling_Middleware);
 
 module.exports = app;

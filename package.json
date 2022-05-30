@@ -1,8 +1,15 @@
 {
   "name": "natours",
   "version": "1.0.0",
-  "description": "",
-  "main": "DB.js",
+  "description": "Natours Udemy Course John",
+  "contributors": [
+    {
+      "name": "Hemant Soni",
+      "email": "hsoni2962@gmail.com",
+      "url": "http://thehemantsoni.epizy.com/"
+    }
+  ],
+  "main": "./server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
