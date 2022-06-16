@@ -57,7 +57,7 @@ router.route('/aggregate/busymonth/:year')
 // Tour within distance
 router.route('/tours-within/:distance/center/:latlng/unit/:unit').get(tourController().toursWithIn);
 
-
+// Tour near my current geo location
 router.route('/tours-nearMe/:latlng/unit/:unit').get(tourController().tourNearMe);
 
 module.exports = router;

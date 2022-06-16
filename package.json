@@ -19,7 +19,14 @@
     "watch:js": "parcel watch ./natours/server.js --out-dir ./natours/server.js --out-file bundle.js",
     "build:js": "parcel build ./natours/server.js --out-dir ./natours/server.js --out-file bundle.js"
   },
-  "keywords": [],
+  "keywords": [
+    "node",
+    "express",
+    "mongoose",
+    "stripe",
+    "sendgrid",
+    "jsonwebtoken"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -29,6 +36,7 @@
     "express": "^4.17.1",
     "express-mongo-sanitize": "^2.1.0",
     "express-rate-limit": "^5.5.1",
+    "glob": "^8.0.3",
     "helmet": "^4.6.0",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
@@ -36,10 +44,15 @@
     "mongoose": "^6.0.13",
     "nodemailer": "^6.7.1",
     "pug": "^3.0.2",
+    "stripe": "^9.5.0",
     "validator": "^13.7.0",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hemant12d/natours-tour"
   }
 }

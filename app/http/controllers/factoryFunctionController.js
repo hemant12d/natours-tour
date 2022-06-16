@@ -97,10 +97,12 @@ const factoryFunctions = {
     getAll: Model => {
         return catchAsyncError(async (req, res, next) => {
 
-            let filter = {};
+            const filter = {};
 
             // When request wants particular views for a tour (Nested get point of reviews for tour)
             if (req.params.tourId) filter = { tour: req.params.tourId };
+
+            console.log("Request Query ", req.query);
 
             let apiFeatures = new ApiFeatures(Model.find(filter), req.query)
                 .filter()

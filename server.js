@@ -2,9 +2,9 @@ const DB = require('./DB'); DB(); // Database Connection
 
 const app = require('./app') // Express App
 
-const port = (process.env.APP_PORT * 1) || 5000;
+const PORT = (process.env.APP_PORT * 1) || 5000;
 
-app.listen(port, () => { console.log(`Server running on port : true`) }); 
+app.listen(PORT, () => { console.log(`Server running on port ${PORT} : true`) }); 
 
 // The process is the global object in Node.js that keeps track of and contains all the information of the particular node.js process that is executing at a particular time on the machine.
 
