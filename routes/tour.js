@@ -3,7 +3,7 @@ const router = express.Router();
 const tourController = require('../app/http/controllers/tourController');
 const authController = require('../app/http/controllers/authController');
 const reviewController = require('../app/http/controllers/reviewController');
-const tourMiddleware = require('../app/middleware/tourMiddleware');
+const tourMiddleware = require('../app/middleware/tourMIddleware');
 const reviewRouter = require('../routes/review');
 
 // mounting router
