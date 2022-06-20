@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+const fs = require('fs');
 // Turn on production
 // process.on('uncaughtException', err =>{
 //     console.log(err)
@@ -22,6 +22,11 @@ const limiter = require("./app/utils/limiterConfiguration");
 
 const unHandleRoute = require("./app/utils/unHandleRoute");
 
+// Swagger docs
+const swaggerUi = require('swagger-ui-express');
+let swaggerDocument = JSON.parse(fs.readFileSync('./swagger.json', 'utf-8'));
+// const swaggerDocument = require('./swagger.json');
+
 // Template engine configuration
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -35,6 +40,7 @@ app.use(
     xss(), // Data sanitization againt XSS attack
     compression()
 );
+
 
 // Limiting the request from particular Ip
 app.use('/', limiter);
@@ -60,7 +66,7 @@ app.use('/tours', tourRoute);
 app.use('/users', userRoute);
 app.use('/reviews', reviewRoute);
 app.use('/booking', bookingRoute);
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Handle undefined route
 app.all('*', unHandleRoute);

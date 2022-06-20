@@ -47,7 +47,7 @@ const productionDuplicateError = (res, error) => {
     return new AppError(msg, 400);
 }
 
-// JWT authentication error 🦓🦓
+// JWT authentication error
 const jsonWebTokenError = () => new AppError('Invalid Signature of Token', 404);
 
 // Jwt Token Expires
