@@ -18,8 +18,6 @@ router.patch('/updateMyPassword', authController.updatePassword);
 router.patch('/updateMe', authController.updateMe);
 router.delete('/deleteMe', authController.deleteMe);
 
-
-
 // Added access middleware with admin access to all of the remaining routes
 router.use(authController.access('Admin'));
 router.route('/')

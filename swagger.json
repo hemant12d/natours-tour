@@ -5,8 +5,6 @@
     "description": "Natours apis' with all the filteration, including geo special queries",
     "version": "1.0.0"
   },
-  "host": "localhost:21497",
-	"schemes": ["http"],
   "paths": {
     "/users": {
       "get": {
@@ -18,7 +16,8 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "type": "object",
+                  "$ref": "#/definitions/Data"
                 }
               }
             }
@@ -173,5 +172,506 @@
         "description": "Server error, please contact admin"
       }
     }
-  }
+  },
+  "definitions": {
+		"Data": {
+			"type": "object",
+			"properties": {
+				"integ": {
+					"format": "int32",
+					"type": "integer",
+					"example": 123
+				},
+				"doub": {
+					"format": "double",
+					"type": "number",
+					"example": 9858.216
+				},
+				"boolea": {
+					"type": "boolean"
+				},
+				"guid": {
+					"format": "uuid",
+					"type": "string",
+					"example": "79b8a3d5-e15d-45c8-ac93-ccac0b0ac0ba"
+				},
+				"date": {
+					"format": "date-time",
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "Data"
+			}
+		},
+		"Company": {
+			"type": "object",
+			"properties": {
+				"Id": {
+					"format": "int32",
+					"type": "integer",
+					"example": 123
+				},
+				"Name": {
+					"type": "string"
+				},
+				"Description": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "Company"
+			}
+		},
+		"Test": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"format": "int32",
+					"type": "integer",
+					"example": 123
+				},
+				"guid": {
+					"format": "uuid",
+					"type": "string",
+					"example": "bc67f1b9-261c-47c1-b22a-448a0bf60756"
+				},
+				"did": {
+					"format": "double",
+					"type": "number",
+					"example": 9858.216
+				},
+				"keys": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"example": ["abc",
+					"def",
+					"ghi"]
+				},
+				"index": {
+					"type": "object",
+					"additionalProperties": {
+						"format": "int32",
+						"type": "integer"
+					},
+					"example": {
+						"1": "abc",
+						"2": "def"
+					}
+				}
+			},
+			"xml": {
+				"name": "Test"
+			}
+		},
+		"ViewModelTest": {
+			"description": "Testing POCO model",
+			"type": "object",
+			"properties": {
+				"abd": {
+					"type": "string"
+				},
+				"bcd": {
+					"type": "string"
+				},
+				"cde": {
+					"type": "string"
+				},
+				"Id": {
+					"format": "int32",
+					"description": "The super ID that will be used",
+					"type": "integer",
+					"example": 123
+				},
+				"Name": {
+					"description": "Who needs a name?",
+					"type": "string"
+				},
+				"xyz": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "ViewModelTest"
+			}
+		},
+		"MyData": {
+			"description": "My super duper data",
+			"type": "object",
+			"properties": {
+				"id": {
+					"format": "int32",
+					"description": "The unique identifier",
+					"type": "integer",
+					"example": 123
+				},
+				"name": {
+					"description": "Everyone needs a name",
+					"type": "string"
+				},
+				"details": {
+					"description": "Details - testing anchor: <a href=\"?filter=TestPost\">TestPost</a>",
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "MyData"
+			}
+		},
+		"NotFoundResult": {
+			"description": "Represents an action result that returns an empty {System.Net.HttpStatusCode.NotFound} response.",
+			"type": "object",
+			"properties": {
+				"Request": {
+					"description": "Gets the request message which led to this result.",
+					"type": "object",
+					"readOnly": true
+				}
+			},
+			"xml": {
+				"name": "NotFoundResult"
+			}
+		},
+		"BadRequestErrorMessageResult": {
+			"description": "Represents an action result that returns {System.Net.HttpStatusCode.BadRequest} response and performs content negotiation on an see {System.Web.Http.HttpError} with  {System.Web.Http.HttpError.Message}.",
+			"type": "object",
+			"properties": {
+				"Message": {
+					"description": "Gets the user-visible error message.",
+					"type": "string",
+					"readOnly": true
+				},
+				"ContentNegotiator": {
+					"$ref": "#/definitions/IContentNegotiator",
+					"description": "Gets the content negotiator to handle content negotiation.",
+					"readOnly": true
+				},
+				"Request": {
+					"description": "Gets the request message which led to this result.",
+					"type": "object",
+					"readOnly": true
+				},
+				"Formatters": {
+					"description": "Gets the formatters to use to negotiate and format the content.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/MediaTypeFormatter"
+					},
+					"readOnly": true,
+					"xml": {
+						"name": "MediaTypeFormatter",
+						"wrapped": true
+					}
+				}
+			},
+			"xml": {
+				"name": "BadRequestErrorMessageResult"
+			}
+		},
+		"IContentNegotiator": {
+			"description": "Performs content negotiation.  This is the process of selecting a response writer (formatter) in compliance with header values in the request.",
+			"type": "object",
+			"properties": {
+				
+			},
+			"xml": {
+				"name": "IContentNegotiator"
+			}
+		},
+		"MediaTypeFormatter": {
+			"description": "Base class to handle serializing and deserializing strongly-typed objects using {System.Net.Http.ObjectContent}.",
+			"type": "object",
+			"properties": {
+				"SupportedMediaTypes": {
+					"description": "Gets the mutable collection of media types supported bythis {System.Net.Http.Formatting.MediaTypeFormatter}.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/MediaTypeHeaderValue"
+					},
+					"readOnly": true,
+					"xml": {
+						"name": "MediaTypeHeaderValue",
+						"wrapped": true
+					}
+				},
+				"SupportedEncodings": {
+					"description": "Gets the mutable collection of character encodings supported bythis {System.Net.Http.Formatting.MediaTypeFormatter}.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Encoding"
+					},
+					"readOnly": true,
+					"xml": {
+						"name": "Encoding",
+						"wrapped": true
+					}
+				},
+				"MediaTypeMappings": {
+					"description": "Gets the mutable collection of {System.Net.Http.Formatting.MediaTypeMapping} objects that match HTTP requests to media types.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/MediaTypeMapping"
+					},
+					"readOnly": true,
+					"xml": {
+						"name": "MediaTypeMapping",
+						"wrapped": true
+					}
+				},
+				"RequiredMemberSelector": {
+					"$ref": "#/definitions/IRequiredMemberSelector",
+					"description": "Gets or sets the {System.Net.Http.Formatting.IRequiredMemberSelector} instance used to determine required members."
+				}
+			},
+			"xml": {
+				"name": "MediaTypeFormatter"
+			}
+		},
+		"MediaTypeHeaderValue": {
+			"type": "object",
+			"properties": {
+				"CharSet": {
+					"type": "string"
+				},
+				"Parameters": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/NameValueHeaderValue"
+					},
+					"readOnly": true,
+					"xml": {
+						"name": "NameValueHeaderValue",
+						"wrapped": true
+					}
+				},
+				"MediaType": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "MediaTypeHeaderValue"
+			}
+		},
+		"Encoding": {
+			"type": "object",
+			"properties": {
+				"m_codePage": {
+					"format": "int32",
+					"type": "integer",
+					"example": 123
+				},
+				"dataItem": {
+					"$ref": "#/definitions/CodePageDataItem"
+				},
+				"m_isReadOnly": {
+					"type": "boolean"
+				},
+				"encoderFallback": {
+					"$ref": "#/definitions/EncoderFallback"
+				},
+				"decoderFallback": {
+					"$ref": "#/definitions/DecoderFallback"
+				}
+			},
+			"xml": {
+				"name": "Encoding"
+			}
+		},
+		"MediaTypeMapping": {
+			"description": "An abstract base class used to create an association between {System.Net.Http.HttpRequestMessage} or  {System.Net.Http.HttpResponseMessage} instances that have certain characteristics  and a specific {System.Net.Http.Headers.MediaTypeHeaderValue}.",
+			"type": "object",
+			"properties": {
+				"MediaType": {
+					"$ref": "#/definitions/MediaTypeHeaderValue",
+					"description": "Gets the {System.Net.Http.Headers.MediaTypeHeaderValue} that is associated with {System.Net.Http.HttpRequestMessage} or  {System.Net.Http.HttpResponseMessage} instances that have the given characteristics of the  {System.Net.Http.Formatting.MediaTypeMapping}.",
+					"readOnly": true
+				}
+			},
+			"xml": {
+				"name": "MediaTypeMapping"
+			}
+		},
+		"IRequiredMemberSelector": {
+			"description": "Defines method that determines whether a given member is required on deserialization.",
+			"type": "object",
+			"properties": {
+				
+			},
+			"xml": {
+				"name": "IRequiredMemberSelector"
+			}
+		},
+		"NameValueHeaderValue": {
+			"type": "object",
+			"properties": {
+				"Name": {
+					"type": "string",
+					"readOnly": true
+				},
+				"Value": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "NameValueHeaderValue"
+			}
+		},
+		"CodePageDataItem": {
+			"type": "object",
+			"properties": {
+				"m_dataIndex": {
+					"format": "int32",
+					"type": "integer",
+					"example": 123
+				},
+				"m_uiFamilyCodePage": {
+					"format": "int32",
+					"type": "integer",
+					"example": 123
+				},
+				"m_webName": {
+					"type": "string"
+				},
+				"m_headerName": {
+					"type": "string"
+				},
+				"m_bodyName": {
+					"type": "string"
+				},
+				"m_flags": {
+					"format": "int32",
+					"type": "integer",
+					"example": 123
+				}
+			},
+			"xml": {
+				"name": "CodePageDataItem"
+			}
+		},
+		"EncoderFallback": {
+			"type": "object",
+			"properties": {
+				"bIsMicrosoftBestFitFallback": {
+					"type": "boolean"
+				}
+			},
+			"xml": {
+				"name": "EncoderFallback"
+			}
+		},
+		"DecoderFallback": {
+			"type": "object",
+			"properties": {
+				"bIsMicrosoftBestFitFallback": {
+					"type": "boolean"
+				}
+			},
+			"xml": {
+				"name": "DecoderFallback"
+			}
+		},
+		"ImageFeature": {
+			"type": "object",
+			"properties": {
+				"ImageUrl": {
+					"description": "Here goes your image URL",
+					"type": "string"
+				},
+				"Title": {
+					"description": "We all need a Title",
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "ImageFeature"
+			}
+		},
+		"CategoryModel": {
+			"type": "object",
+			"properties": {
+				"Id": {
+					"format": "int32",
+					"type": "integer",
+					"example": 123
+				},
+				"Parent": {
+					"$ref": "#/definitions/CategoryModel"
+				}
+			},
+			"xml": {
+				"name": "CategoryModel"
+			}
+		},
+		"test1": {
+			"type": "object",
+			"properties": {
+				"MyId": {
+					"format": "int32",
+					"type": "integer",
+					"example": 123
+				},
+				"data": {
+					"format": "uuid",
+					"type": "string",
+					"example": "18e27719-7749-42e2-ba77-0effca47440f"
+				}
+			},
+			"xml": {
+				"name": "test1"
+			}
+		},
+		"test2": {
+			"type": "object",
+			"properties": {
+				"MyId": {
+					"format": "int32",
+					"type": "integer",
+					"example": 123
+				},
+				"data": {
+					"format": "uuid",
+					"type": "string",
+					"example": "18bfa47d-491d-4dc6-abdc-75d613822ec4"
+				}
+			},
+			"xml": {
+				"name": "test2"
+			}
+		},
+		"MyTest": {
+			"type": "object",
+			"properties": {
+				"Name": {
+					"type": "string"
+				},
+				"IsPassing": {
+					"type": "boolean"
+				}
+			},
+			"xml": {
+				"name": "MyTest"
+			}
+		},
+		"Company123": {
+			"type": "object",
+			"properties": {
+				"Id": {
+					"format": "int32",
+					"type": "integer",
+					"example": 123
+				},
+				"Name": {
+					"type": "string"
+				},
+				"Description": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "Company"
+			}
+		}
+	}
 }
