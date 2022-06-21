@@ -26,18 +26,19 @@
           "500": {
             "description": "Server error, please contact admin"
           }
-        }
+        },
+        "security": [{ "bearerAuth": [] }]
       }
     },
     "/users/{id}": {
       "get": {
         "summary": "Return a user",
-        "parameters":[
+        "parameters": [
           {
             "in": "path",
             "name": "id",
             "required": true,
-            "schema":{
+            "schema": {
               "type": "string",
               "format": "mongoId"
             },
@@ -62,6 +63,15 @@
             "description": "Server error, please contact admin"
           }
         }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
