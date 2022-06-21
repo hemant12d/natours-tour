@@ -48,10 +48,10 @@ const productionDuplicateError = (res, error) => {
 }
 
 // JWT authentication error
-const jsonWebTokenError = () => new AppError('Invalid Signature of Token', 404);
+const jsonWebTokenError = () => new AppError('Invalid Signature of Token', 401);
 
 // Jwt Token Expires
-const tokenExpiredError = () => new AppError('Token has expired', 404);
+const tokenExpiredError = () => new AppError('Token has expired', 400);
 
 
 // Handle all the programming & unexpected error

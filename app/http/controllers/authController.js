@@ -89,7 +89,7 @@ const AuthController = {
         const user = await User.findOne({ email: req.user.email }).select('+password');
 
         if (!await user.matchPassword(req.body.password, user.password))
-            return next(new AppError('Password is not correct', 404));
+            return next(new AppError('Password is not correct', 400));
 
         user.password = req.body.newPassword;
         user.confirm_password = req.body.newConfirmPassword;

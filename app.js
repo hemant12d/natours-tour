@@ -66,6 +66,9 @@ app.use('/tours', tourRoute);
 app.use('/users', userRoute);
 app.use('/reviews', reviewRoute);
 app.use('/booking', bookingRoute);
+
+// Swagger json doc demo
+// https://github.com/heldersepu/Swagger-Net-Test/blob/master/swagger.json 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Handle undefined route

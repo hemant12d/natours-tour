@@ -5,9 +5,12 @@
     "description": "Natours apis' with all the filteration, including geo special queries",
     "version": "1.0.0"
   },
+  "host": "localhost:21497",
+	"schemes": ["http"],
   "paths": {
     "/users": {
       "get": {
+        "tags": ["Users"],
         "summary": "Returns a list of users.",
         "responses": {
           "200": {
@@ -21,10 +24,10 @@
             }
           },
           "401": {
-            "description": "Unauthorized for access"
+            "$ref": "#/components/responses/UnauthorizedError"
           },
           "500": {
-            "description": "Server error, please contact admin"
+            "$ref": "#/components/responses/serverError"
           }
         },
         "security": [{ "bearerAuth": [] }]
@@ -32,6 +35,7 @@
     },
     "/users/{id}": {
       "get": {
+        "tags": ["Users"],
         "summary": "Return a user",
         "parameters": [
           {
@@ -57,12 +61,99 @@
             }
           },
           "401": {
-            "description": "Unauthorized for access"
+            "$ref": "#/components/responses/UnauthorizedError"
           },
           "500": {
-            "description": "Server error, please contact admin"
+            "$ref": "#/components/responses/serverError"
           }
-        }
+        },
+        "security": [
+          { "bearerAuth": [] }
+        ]
+      },
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update a user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "mongoId"
+            },
+            "description": "User id to update the details"
+          }
+        ],
+        "requestBody": {
+          "description": "Pass the value for update",
+          "required": true,
+          "content":{
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "hemant soni"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "500": {
+            "$ref": "#/components/responses/serverError"
+          }
+        },
+        "security": [
+          { "bearerAuth": [] }
+        ]
+      },
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete a user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "mongoId"
+            },
+            "description": "User id to delete the user"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "User deleted"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "500": {
+            "$ref": "#/components/responses/serverError"
+          }
+        },
+        "security": [
+          { "bearerAuth": [] }
+        ]
       }
     }
   },
@@ -72,6 +163,14 @@
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT"
+      }
+    },
+    "responses":{
+      "UnauthorizedError":{
+        "description": "Access token is missing or invalid"
+      },
+      "serverError":{
+        "description": "Server error, please contact admin"
       }
     }
   }
