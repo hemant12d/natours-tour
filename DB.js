@@ -11,7 +11,7 @@ const dbConnection = async () => {
 
   // Connect with LocalHost Compass
   try {
-    const connection = await mongoose.connect(process.env.DB_LOCAL);
+    const connection = await mongoose.connect(process.env.DB_LOCATION);
     console.log("Database connection : true");
   } catch (err) {
     console.log(err);

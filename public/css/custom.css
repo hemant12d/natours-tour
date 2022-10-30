@@ -1,0 +1,513 @@
+/* !!!!!!!!!!!!!!!!!!!!!!!! Google Fonts Import !!!!!!!!!!!!!!!!!!!!!!!!!! */
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@600&display=swap");
+/* textDescription Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+/* !!!!!!!!!!!!! Universal style's awesome collection !!!!!!! */
+:root {
+  --logo-font: "Pacifico", "cursive";
+  --nav_link-font: "Acme", sans-serif;
+  --logo-color: #005f99;
+  --orange_color: #ff5200;
+  --footer-color: #202020;
+}
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Own Customize and universal properties */
+.text_justify {
+  text-align: justify;
+}
+.text_center {
+  text-align: center;
+}
+.text_end {
+  text-align: end;
+}
+.margin_bottom {
+  margin-bottom: 2rem;
+}
+.width_full {
+  width: 100%;
+}
+.subTitle > p {
+  color: var(--orange_color);
+  font-size: 40px;
+  font-weight: 650;
+  margin-bottom: 2.2rem;
+  cursor: pointer;
+}
+.subSubTitle > p {
+  color: var(--logo-color);
+  margin-bottom: 1.2rem;
+  font-size: 27px;
+  font-weight: 650;
+}
+.textDescription > p {
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+}
+
+
+section{
+margin-bottom: 2.8rem;
+}
+
+@media screen and (max-width: 780px) {
+  .subTitle > p {
+    font-size: 32px;
+    text-align: start;
+    margin-bottom: 2rem;
+  }
+
+  .subSubTitle > p {
+    color: var(--logo-color);
+    font-size: 22px;
+    font-weight: 650;
+  }
+}
+@media screen and (max-width: 480px) {
+  .subTitle > p {
+    font-size: 26px;
+     margin-bottom: 1.6rem;
+  }
+  .textDescription > p {
+    font-size: 16px;
+  }
+  .subSubTitle > p {
+    color: var(--logo-color);
+    font-size: 20px;
+    font-weight: 650;
+  }
+  .textDescription > p {
+    font-size: 17px;
+  }
+}
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!! Navigation Menu design Start !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+nav {
+  display: flex;
+  height: 80px;
+  align-items: center;
+  justify-content: space-between;
+  z-index: +10;
+  padding: 0 5%;
+  width: 100%;
+  position: sticky;
+  top: 0px;
+  background: #fff;
+}
+
+nav .logo {
+  font-size: 25px;
+  font-family: var(--logo-font);
+  color: #005f99;
+  text-decoration: underline;
+  transition: color 0.4s ease-out;
+  cursor: pointer;
+}
+nav .logo:hover {
+  color: var(--orange_color);
+}
+
+.menu ul {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  padding-left: 0px;
+}
+
+.menu ul li {
+  list-style: none;
+  padding: 0 16px;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  font-size: 20px;
+  font-family: var(--nav_link-font);
+  letter-spacing: 1px;
+  color: #000;
+  transition: color 0.4s ease-out;
+}
+
+.menu ul li a:hover {
+  font-family: var(--nav_link-font);
+  letter-spacing: 1px;
+  color: var(--orange_color);
+}
+
+.icon_swap i {
+  display: none;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!! Navigation Menu design End !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!! Main Section Start !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+.margin_y {
+  margin-top: 2rem;
+}
+
+.col_right .img img {
+  width: 100%;
+  max-height: 400px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.col_left .intro_start > p {
+  font-size: 32px;
+  color: var(--orange_color);
+  font-weight: 630;
+}
+
+.col_left .aboutMe > h1 {
+  font-size: 41px;
+  color: #005f99;
+  font-family: "Poppins", sans-serif;
+}
+
+.main_section .col_right {
+  margin: auto 0;
+}
+
+.main_section .col_left {
+  padding-right: 16px;
+}
+
+/* !!!!!!!!!! Button Design !!!!!! */
+
+.col_left .more #moreAboutMe {
+  background-color: var(--orange_color);
+  color: white;
+  border: none;
+  padding: 13px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  letter-spacing: 0px;
+}
+
+.col_left .more #moreAboutMe:hover {
+  background-color: var(--orange_color);
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!! Projects Section Start !!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+.projectsDisplay .projectTitle {
+  padding: 9px 0;
+}
+
+.projectsOverview .project {
+  max-height: 350px;
+  transition: all 0.8s ease-out;
+  border: 1px solid var(--orange_color);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.projectsOverview .project .img {
+  width: 43%;
+}
+
+.projectsOverview .project .img img {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-width: 100%;
+  min-height: 100%;
+  border-radius: 12px;
+}
+
+.projectsOverview .projectFood .overView {
+  text-align: justify;
+  width: 57%;
+  padding: 10px 24px;
+  opacity: 0.95;
+}
+
+.projectsOverview .projectFood .overView .projectHeading {
+  color: var(--logo-color);
+  font-size: 21px;
+  font-family: "Hind Siliguri", sans-serif;
+}
+
+.projectsOverview .projectFood .overView button {
+  background-color: var(--orange_color);
+  color: white;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  letter-spacing: 0px;
+  width: 100%;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!! Work (What Can I Do) Section Start !!!!!!!!!!!!!!!!!!!!!!!!!!! */
+.workSection .workSectionTitle {
+  margin-bottom: 0px;
+  color: var(--orange_color);
+}
+
+.workSection .work {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.workSection .clientImg img {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  max-height: 400px;
+  opacity: 0.97;
+}
+/* Round Design */
+.work .webDevelopment .design {
+  padding: 15px 20px;
+  background-color: var(--orange_color);
+  color: #fff;
+  font-size: 25px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transition: all 0.4s ease-out;
+}
+/* ! Important */
+.work .webDevelopment .workHeading {
+  font-size: 28px;
+  color: #fff;
+}
+
+.work .webDevelopment .design:hover {
+  background-color: #fff;
+  color: var(--logo-color);
+  border: 2px solid var(--orange_color);
+}
+
+.work .webDevelopment {
+  background-color: var(--logo-color);
+  padding: 10px 12px;
+  border-radius: 20px;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!! Education and Skills !!!!!!!!!!!!!!!!!!!! */
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!! Main Section End !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!! Footer Start !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+footer {
+  background-color: var(--footer-color);
+  color: #fff;
+}
+footer .footerSubTitle > p {
+  color: #fff;
+}
+
+footer .footerSubTitle > p span {
+  transition: color 0.5s ease-out;
+  cursor: pointer;
+}
+
+footer .footerSubTitle > p span:hover {
+  color: var(--orange_color);
+}
+
+footer a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+footer a:hover {
+  color: rgb(255, 255, 255);
+}
+footer .footerName {
+  font-family: var(--logo-font);
+  color: var(--orange_color);
+}
+footer .iconFooter {
+  margin-right: 10px;
+}
+footer .iconFooter img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.95;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!! Footer End !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+/*------------------------------------------- Media Queries -------------------------------------------------*/
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!! Navigation Section design Start !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+@media screen and (max-width: 580px) {
+  .menu {
+    position: fixed;
+    top: 80px;
+    left: 0px;
+    height: 0vh;
+    width: 100%;
+    transition: all 0.4s ease-in;
+  }
+
+  .menu ul {
+    flex-direction: column;
+  }
+
+  .menu ul li {
+    margin: 20px 0px;
+    display: block;
+  }
+  .menu ul li a {
+    color: var(--orange_color);
+  }
+
+  .icon_swap i {
+    display: block;
+    font-size: 28px;
+    margin-right: 8px;
+  }
+
+  .menu {
+    background-color: #ffffff;
+    height: 100vh;
+  }
+  .menu_res {
+    left: -100%;
+    height: 0vh;
+    border-radius: 0px 10% 10% 0px;
+  }
+
+  .nav_icon_transform {
+    transition: all 0.7s ease-in-out;
+    transform: rotate(-90deg);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  nav .logo {
+    font-size: 20px;
+  }
+  nav {
+    padding: 0 2%;
+  }
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!! Navigation Section design End !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+/* !!!!!!!!!!!!!!!!! Main Section start !!!!!!!!!!!!!! */
+@media screen and (max-width: 760px) {
+  .main_section .col_left {
+    padding: 0 auto;
+  }
+  .margin_y {
+    margin-top: 0rem;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .col_left .intro_start > p {
+    font-size: 23px;
+  }
+
+  .col_left .description > p {
+    text-align: justify;
+  }
+
+  .col_left .aboutMe > h1 {
+    font-size: 32px;
+    color: var(--logo-color);
+  }
+
+  .col_left .more #moreAboutMe {
+    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 5px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .col_left .intro_start > p {
+    font-size: 21px;
+  }
+
+  .col_left .description > p {
+    font-size: 16px;
+    text-align: justify;
+  }
+
+  .col_left .aboutMe > h1 {
+    font-size: 28px;
+    color: #005f99;
+  }
+
+  .col_left .more #moreAboutMe {
+    font-size: 12px;
+    padding: 9px 12px;
+    border-radius: 4px;
+  }
+}
+
+/* !!!!!!!!!! Project Section !!!!!!!!! */
+
+@media screen and (max-width: 680px) {
+  .padding_md_close {
+    padding: 0 0px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .projectsOverview .project {
+    flex-direction: column;
+    justify-content: center;
+    max-height: 710px;
+    padding: 0 0;
+  }
+  .projectsOverview .project .img {
+    width: 100%;
+  }
+  .projectsOverview .projectFood .overView {
+    width: 100%;
+    padding: 10px 6px;
+  }
+}
+
+/* Work Section */
+@media screen and (max-width: 780px) {
+  .workSection .workSectionTitle {
+    text-align: start;
+    padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .work .webDevelopment .workHeading {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .work .webDevelopment .workHeading {
+    font-size: 20px;
+  }
+}
+/* !!!!!!!!!!!!!!!!! Main Section end !!!!!!!!!!!!!! */
+
+/*!!!!!!!!!!!!!!!!!!! Footer Section !!!!!!!!!!!!! */
+@media screen and (max-width: 780px) {
+  footer .iconFooter img {
+    height: 30px;
+    width: 30px;
+  }
+}

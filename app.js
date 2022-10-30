@@ -12,6 +12,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Security packages
 const helmet = require('helmet');
 const hpp = require('hpp');
@@ -45,6 +47,9 @@ app.use(
 // Limiting the request from particular Ip
 app.use('/', limiter);
 
+app.get("/",(req,res)=>{
+    res.sendFile('index.html');
+  });
 
 // Handle all the operation & programming error
 const global_Error_Handling_Middleware = require('./app/http/controllers/errorController');
