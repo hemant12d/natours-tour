@@ -27,7 +27,7 @@ const unHandleRoute = require("./app/utils/unHandleRoute");
 // Swagger docs
 const swaggerUi = require('swagger-ui-express');
 let swaggerDocument = JSON.parse(fs.readFileSync('./swagger.json', 'utf-8'));
-// const swaggerDocument = require('./swagger.json');
+//const swaggerDocument = require('./swagger.json');
 
 // Template engine configuration
 app.set('view engine', 'pug');
@@ -48,6 +48,7 @@ app.use(
 app.use('/', limiter);
 
 app.get("/",(req,res)=>{
+    console.log("hai")
     res.sendFile('index.html');
   });
 
