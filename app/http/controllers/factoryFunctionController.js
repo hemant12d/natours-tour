@@ -97,7 +97,7 @@ const factoryFunctions = {
     getAll: Model => {
         return catchAsyncError(async (req, res, next) => {
 
-            const filter = {};
+            let filter = {};
 
             // When request wants particular views for a tour (Nested get point of reviews for tour)
             if (req.params.tourId) filter = { tour: req.params.tourId };

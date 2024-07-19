@@ -20,14 +20,13 @@ const productionError = (res, error) => {
     }
     else {
 
-        // Mongoose error also include in programming error so we have to handle them manually :) 
-        console.log("Error 🦀🦀", error);
+        // Mongoose error also include in programming error so we have to handle them manually :)
+        console.log("internal server error: ", error);
         return res.status(500).json({
             status: error.statusResult,
-            msg: "Something went very very wrong !",
+            msg: "Something went very wrong !",
         });
     }
-
 }
 
 const productionCastError = (res, error) => {

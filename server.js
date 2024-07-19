@@ -1,3 +1,16 @@
+
+/**
+ * Insert this Errsole code snippet as the first line of your app's main file
+ */
+const errsole = require('@errsole/node');
+errsole.initialize({
+    framework: 'express',
+    token: 'd3cb01ff-3d60-4f06-aa09-e5b54911ee9f',
+    exitOnException: true,
+    evalExpression: true,
+});
+// End of Errsole code snippet
+
 const DB = require('./DB'); DB(); // Database Connection
 
 const app = require('./app') // Express App
@@ -20,7 +33,7 @@ process.on('unhandledRejection', err => {
 
 // process.on('uncaughtException', err =>{
 //     console.log(err)
-//     console.log("UNCAUGHT EXCEPTION. Shuting down server...");
+//     console.log("UNCAUGHT EXCEPTION. Shutting down server...");
 //     console.log(err.name, err.message);
 //     process.exit(1);
 // });
